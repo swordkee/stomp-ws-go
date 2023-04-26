@@ -22,8 +22,8 @@ import (
 	"net"
 	"os"
 	//
-	sng "github.com/drawdy/stomp-ws-go"
-	"github.com/drawdy/stomp-ws-go/senv"
+	sng "github.com/swordkee/stomp-ws-go"
+	"github.com/swordkee/stomp-ws-go/senv"
 )
 
 func main() {

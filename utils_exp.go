@@ -23,11 +23,11 @@ import (
 	"fmt"
 	"io"
 	//
-	"github.com/drawdy/stomp-ws-go/senv"
+	"github.com/swordkee/stomp-ws-go/senv"
 )
 
 /*
-	HexData returns a dump formatted value of a byte slice.
+HexData returns a dump formatted value of a byte slice.
 */
 func HexData(b []uint8) string {
 	td := b[:]
@@ -41,7 +41,7 @@ func HexData(b []uint8) string {
 }
 
 /*
-	Sha1 returns a SHA1 hash for a specified string.
+Sha1 returns a SHA1 hash for a specified string.
 */
 func Sha1(q string) string {
 	g := sha1.New()
@@ -50,7 +50,7 @@ func Sha1(q string) string {
 }
 
 /*
-	Uuid returns a type 4 UUID.
+Uuid returns a type 4 UUID.
 */
 func Uuid() string {
 	b := make([]byte, 16)
@@ -61,15 +61,15 @@ func Uuid() string {
 }
 
 /*
-	Supported checks if a particular STOMP version is supported in the current
-	implementation.
+Supported checks if a particular STOMP version is supported in the current
+implementation.
 */
 func Supported(v string) bool {
 	return hasValue(supported, v)
 }
 
 /*
-	Protocols returns a slice of client supported protocol levels.
+Protocols returns a slice of client supported protocol levels.
 */
 func Protocols() []string {
 	return supported

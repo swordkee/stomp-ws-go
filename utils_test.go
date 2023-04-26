@@ -26,11 +26,11 @@ import (
 	"strings"
 	"testing"
 	//
-	"github.com/drawdy/stomp-ws-go/senv"
+	"github.com/swordkee/stomp-ws-go/senv"
 )
 
 /*
-	Host and port for Dial.
+Host and port for Dial.
 */
 func badVerHostAndPort() (string, string) {
 	h := os.Getenv("STOMP_HOSTBV") // export only if you understand these tests
@@ -45,7 +45,7 @@ func badVerHostAndPort() (string, string) {
 }
 
 /*
-	Check if 1.1+ style Headers are needed, and return appropriate Headers.
+Check if 1.1+ style Headers are needed, and return appropriate Headers.
 */
 func check11(h Headers) Headers {
 	v := os.Getenv("STOMP_TEST11p")
@@ -65,7 +65,7 @@ func check11(h Headers) Headers {
 }
 
 /*
-	Return headers appropriate for the protocol level.
+Return headers appropriate for the protocol level.
 */
 func headersProtocol(h Headers, protocol string) Headers {
 	if protocol == SPL_10 {
@@ -81,7 +81,7 @@ func headersProtocol(h Headers, protocol string) Headers {
 }
 
 /*
-	Test helper.
+Test helper.
 */
 func checkReceived(t *testing.T, conn *Connection, eofok bool) {
 	var md MessageData
@@ -101,7 +101,7 @@ func checkReceived(t *testing.T, conn *Connection, eofok bool) {
 }
 
 /*
-	Test helper.
+Test helper.
 */
 func checkReceivedMD(t *testing.T, conn *Connection,
 	sc <-chan MessageData, id string) {
@@ -121,7 +121,7 @@ func checkReceivedMD(t *testing.T, conn *Connection,
 }
 
 /*
-	Close a network connection.
+Close a network connection.
 */
 func closeConn(t *testing.T, n net.Conn) error {
 	err := n.Close()
@@ -133,7 +133,7 @@ func closeConn(t *testing.T, n net.Conn) error {
 }
 
 /*
-	Test helper.
+Test helper.
 */
 func getMessageData(sc <-chan MessageData, conn *Connection, t *testing.T) (md MessageData) {
 	// When this is called, there should not be any MessageData instance
@@ -149,7 +149,7 @@ func getMessageData(sc <-chan MessageData, conn *Connection, t *testing.T) (md M
 }
 
 /*
-	Open a network connection.
+Open a network connection.
 */
 func openConn(t *testing.T) (net.Conn, error) {
 	h, p := senv.HostAndPort()
@@ -163,7 +163,7 @@ func openConn(t *testing.T) (net.Conn, error) {
 }
 
 /*
-	Test helper.  Send multiple messages.
+Test helper.  Send multiple messages.
 */
 func sendMultiple(md multi_send_data) error {
 	h := Headers{HK_DESTINATION, md.dest}
@@ -179,7 +179,7 @@ func sendMultiple(md multi_send_data) error {
 }
 
 /*
-	Test helper.  Send multiple []byte messages.
+Test helper.  Send multiple []byte messages.
 */
 func sendMultipleBytes(md multi_send_data) error {
 	h := Headers{HK_DESTINATION, md.dest}
@@ -195,7 +195,7 @@ func sendMultipleBytes(md multi_send_data) error {
 }
 
 /*
-   Test helper.  Get properly formatted destination.
+Test helper.  Get properly formatted destination.
 */
 func tdest(d string) string {
 	if brokerid != TEST_ARTEMIS {
@@ -209,7 +209,7 @@ func tdest(d string) string {
 }
 
 /*
-   Test debug helper.  Get properly formatted destination.
+Test debug helper.  Get properly formatted destination.
 */
 func tdumpmd(md MessageData) {
 	fmt.Printf("Command: %s\n", md.Message.Command)
@@ -228,7 +228,7 @@ func tdumpmd(md MessageData) {
 }
 
 /*
-   Test helper.  Check disconnect error.
+Test helper.  Check disconnect error.
 */
 func checkDisconnectError(t *testing.T, e error) {
 	if e == nil {
@@ -239,7 +239,7 @@ func checkDisconnectError(t *testing.T, e error) {
 }
 
 /*
-   Test helper.  Fix up destination
+Test helper.  Fix up destination
 */
 func fixHeaderDest(h Headers) Headers {
 	r := h.Clone()
@@ -252,7 +252,7 @@ func fixHeaderDest(h Headers) Headers {
 }
 
 /*
-   Test helper.  Set which broker is being tested.
+Test helper.  Set which broker is being tested.
 */
 func setTestBroker() int {
 	brokerid = TEST_ANYBROKER
@@ -269,7 +269,7 @@ func setTestBroker() int {
 }
 
 /*
-   Test helper.  Set long heartbeat test flag.
+Test helper.  Set long heartbeat test flag.
 */
 func setHeartBeatFlags() {
 	if os.Getenv("STOMP_HBLONG") == "Y" { // Note:  a single value to run long hb tests
@@ -282,7 +282,7 @@ func setHeartBeatFlags() {
 }
 
 /*
-   Test helper.  Check for missing headers
+Test helper.  Check for missing headers
 */
 func checkDupeHeaders(ms, wh Headers) error {
 	for i := 0; i < len(wh); i += 2 {

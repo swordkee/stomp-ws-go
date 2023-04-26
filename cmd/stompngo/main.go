@@ -27,7 +27,7 @@ package main
 import (
 	"fmt"
 	//
-	"github.com/drawdy/stomp-ws-go"
+	"github.com/swordkee/stomp-ws-go"
 )
 
 func main() {

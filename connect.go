@@ -26,11 +26,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/drawdy/stomp-ws-go/senv"
+	"github.com/swordkee/stomp-ws-go/senv"
 )
 
 /*
-	Wrapper for primary STOMP Connect function that returns an interface.
+Wrapper for primary STOMP Connect function that returns an interface.
 */
 func NewConnector(n net.Conn, h Headers) (STOMPConnector, error) {
 	return Connect(n, h)
@@ -41,37 +41,39 @@ func NewConnectorOverWS(n *websocket.Conn, h Headers) (STOMPConnector, error) {
 }
 
 /*
-	Primary STOMP Connect.
+Primary STOMP Connect.
 
-	For STOMP 1.1+ the Headers parameter MUST contain the headers required
-	by the specification.  Those headers are not magically inferred.
+For STOMP 1.1+ the Headers parameter MUST contain the headers required
+by the specification.  Those headers are not magically inferred.
 
-	Example:
-		// Obtain a network connection
-		n, e := net.Dial(NetProtoTCP, "localhost:61613")
-		if e != nil {
-			// Do something sane ...
-		}
-		h := stompngo.Headers{} // A STOMP 1.0 connection request
-		c, e := stompngo.Connect(n, h)
-		if e != nil {
-			// Do something sane ...
-		}
-		// Use c
+Example:
 
-	Example:
-		// Obtain a network connection
-		n, e := net.Dial(NetProtoTCP, "localhost:61613")
-		if e != nil {
-			// Do something sane ...
-		}
-		h := stompngo.Headers{HK_ACCEPT_VERSION, "1.1",
-			HK_HOST, "localhost"} // A STOMP 1.1 connection
-		c, e := stompngo.Connect(n, h)
-		if e != nil {
-			// Do something sane ...
-		}
-		// Use c
+	// Obtain a network connection
+	n, e := net.Dial(NetProtoTCP, "localhost:61613")
+	if e != nil {
+		// Do something sane ...
+	}
+	h := stompngo.Headers{} // A STOMP 1.0 connection request
+	c, e := stompngo.Connect(n, h)
+	if e != nil {
+		// Do something sane ...
+	}
+	// Use c
+
+Example:
+
+	// Obtain a network connection
+	n, e := net.Dial(NetProtoTCP, "localhost:61613")
+	if e != nil {
+		// Do something sane ...
+	}
+	h := stompngo.Headers{HK_ACCEPT_VERSION, "1.1",
+		HK_HOST, "localhost"} // A STOMP 1.1 connection
+	c, e := stompngo.Connect(n, h)
+	if e != nil {
+		// Do something sane ...
+	}
+	// Use c
 */
 func Connect(n net.Conn, h Headers) (*Connection, error) {
 	if h == nil {
